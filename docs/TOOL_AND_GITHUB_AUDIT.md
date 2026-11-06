@@ -6,12 +6,12 @@
 | Brief root | `C:\Users\MD PCT\Downloads` |
 | Isolated project | `C:\Users\MD PCT\Downloads\sajid-editorial-portfolio-2026` |
 | Required GitHub owner | `msajiddurrani` |
-| Authenticated account used | None. `gh auth status` exited 1 and reported no authenticated GitHub hosts. |
+| Authenticated account used | None. `gh auth status` exited 1 and reported no authenticated GitHub hosts at preflight and after final verification. |
 | Owner verified by GitHub API | Unavailable. The authentication gate skipped `gh api user --jq .login`. |
 | Intended remote | `msajiddurrani/sajid-editorial-portfolio-2026`, private |
 | Actual remote and visibility | Absent. Name availability and remote visibility remain unverified. |
 | Git remote output | `git remote -v` returned no entries. |
-| Local branch and application commit | `main` at application commit `IMPLEMENTATION_SHA`. The audit is finalized in a documentation commit on `main`. |
+| Local branch and application commit | `main` at application commit `9a2a7bbf5732a57da7320343260bca6da7b53b50`. The audit is finalized in a documentation commit on `main`. |
 | Push | Skipped at the account gate. |
 
 To finish the private remote step, authenticate GitHub CLI as `msajiddurrani`. The remote name and availability can then be checked under that login before creation and push.
@@ -64,3 +64,5 @@ To finish the private remote step, authenticate GitHub CLI as `msajiddurrani`. T
 ## Scope
 
 Project writes were confined to the isolated checkout, with the temporary extractor beside the brief as specified. npm used its normal cache and Playwright used temporary browser profiles. Git author overrides applied only to the commit commands. GitHub access was limited to the read-only CLI authentication check. Local browser requests used loopback and npm contacted the public package registry for dependency and advisory checks.
+
+The audit-only follow-up uses `git add -- docs/BUILD_VERIFICATION.md docs/TOOL_AND_GITHUB_AUDIT.md` and `git -c user.name=Codex -c user.email=<local automation identity> commit -m "docs: record portfolio verification and GitHub gate"`. To identify the audit commit, run `git log -1 --format=%H -- docs/TOOL_AND_GITHUB_AUDIT.md`.

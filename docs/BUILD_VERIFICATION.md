@@ -1,6 +1,6 @@
 # Build verification
 
-Verified on **6 November 2026** in the isolated `sajid-editorial-portfolio-2026` checkout. The application commit on `main` is `IMPLEMENTATION_SHA`.
+Verified on **6 November 2026** in the isolated `sajid-editorial-portfolio-2026` checkout. The application commit on `main` is `9a2a7bbf5732a57da7320343260bca6da7b53b50`.
 
 ## Source assets and compositing
 
