@@ -1,0 +1,66 @@
+/* Vertical project chapters. Native page scrolling drives the 3D assemblies. */
+.work-gallery { position:relative; isolation:isolate; padding-bottom:50px; background:var(--ink); color:var(--paper); }
+.project-world { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; }
+.project-chapters { width:calc(100% - 2 * var(--gutter)); max-width:1112px; margin:0 auto; }
+.project-chapter.project-screen {
+  --project-paper:#111110; --project-ink:#f2f0eb; --project-quiet:#b9b7b2; --project-rule:#f2f0eb30; --red-dark:#e74a3b;
+  position:relative; display:block; width:100%; min-height:0; height:auto; padding:28px 0 45px;
+  border-top:1px solid #f2f0eb35; overflow:visible; isolation:auto; background:transparent;
+  color:var(--paper); scroll-margin-top:84px;
+}
+.project-chapter-top { display:flex; justify-content:space-between; align-items:start; gap:24px; font-size:.6rem; letter-spacing:.06em; color:#b9b7b2; text-transform:uppercase; }
+.project-chapter-top > span:first-child { color:var(--red); white-space:nowrap; }
+.project-chapter-top > span:last-child { text-align:right; max-width:58ch; }
+.project-chapter-body { display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(28px,5vw,70px); align-items:center; min-height:440px; padding-block:25px 0; }
+.project-copy { position:relative; z-index:3; }
+.project-copy h3 { font:600 clamp(2.8rem,5.2vw,4.7rem)/.96 var(--heading-display); letter-spacing:-.025em; margin:0 0 20px; }
+.project-copy h3 > span { color:var(--red); }
+.project-context { max-width:39ch; color:var(--paper); font-size:.96rem; line-height:1.55; }
+.project-note { margin-top:17px; color:#b9b7b2; font-size:.81rem; line-height:1.55; max-width:43ch; }
+.project-technologies { display:flex; flex-wrap:wrap; gap:6px 15px; margin:17px 0 22px; padding:0; font-size:.58rem; line-height:1.5; color:#b9b7b2; list-style:none; }
+.project-actions { display:flex; align-items:center; gap:12px; }
+.project-actions a,.project-live { min-height:44px; padding:10px 15px; font-size:.64rem; gap:12px; text-decoration:none; }
+.project-visit { border:1px solid #f2f0eb55; }
+.project-live { min-width:98px; border:1px solid var(--paper); color:var(--ink); background:var(--paper); }
+.project-live:disabled { color:#b9b7b2; background:transparent; border-color:#f2f0eb35; }
+.project-actions a:hover { border-color:var(--red); }
+.project-more { margin-top:17px; max-width:47ch; font-size:.76rem; color:#b9b7b2; }
+.project-more summary { min-height:30px; font-size:.54rem; }
+.project-more ul { margin:0; padding:8px 0 0 17px; line-height:1.6; }
+.project-scene-wrap { min-width:0; }
+.project-scene { position:relative; width:100%; aspect-ratio:1.15; max-height:390px; background:radial-gradient(ellipse,#f2f0eb07,transparent 68%); }
+.project-scene::after { content:''; position:absolute; width:70%; left:15%; bottom:8%; height:22px; border-radius:50%; background:radial-gradient(ellipse,#0008,transparent 70%); }
+.project-scene-caption { position:relative; z-index:3; display:flex; justify-content:space-between; gap:12px; border-top:1px solid #f2f0eb25; padding-top:11px; margin-top:0; color:#b9b7b2; font-size:.51rem; letter-spacing:.035em; }
+.project-scene-caption > span { color:var(--red); }
+/* Dimensional, accessible fallback while loading or when WebGL is unavailable. */
+.project-scene-fallback { position:absolute; inset:0; display:grid; place-items:center; perspective:700px; }
+.work-gallery[data-world="webgl"] .project-scene-fallback { visibility:hidden; }
+.fallback-volume { width:115px; height:115px; position:relative; transform-style:preserve-3d; transform:rotateX(-20deg) rotateY(-30deg); }
+.fallback-volume span,.fallback-volume i { position:absolute; inset:0; border:1px solid #f2f0eb80; background:linear-gradient(140deg,#393935,#111110); }
+.fallback-volume span { display:grid; place-items:center; font:500 35px var(--mono); color:var(--red); transform:translateZ(57.5px); }
+.fallback-volume i:nth-child(2) { transform:rotateY(180deg) translateZ(57.5px); }
+.fallback-volume i:nth-child(3) { transform:rotateY(90deg) translateZ(57.5px); }
+.fallback-volume i:nth-child(4) { transform:rotateY(-90deg) translateZ(57.5px); }
+.fallback-volume i:nth-child(5) { transform:rotateX(90deg) translateZ(57.5px); }
+.fallback-volume i:nth-child(6) { transform:rotateX(-90deg) translateZ(57.5px); }
+.fallback-orbit { position:absolute; width:230px; height:230px; border:1px solid #e74a3b80; border-radius:50%; transform:rotateX(65deg) rotateZ(-20deg); }
+.fallback-orbit.orbit-alt { transform:rotateY(65deg) rotateZ(25deg); border-color:#f2f0eb35; }
+@media (max-width:800px) {
+  .project-chapter-body { gap:25px; grid-template-columns:1fr 1fr; min-height:400px; }
+  .project-copy h3 { font-size:3.1rem; }
+  .project-context { font-size:.87rem; }
+}
+@media (max-width:640px) {
+  .project-chapters { width:calc(100% - 36px); }
+  .project-chapter.project-screen { padding:24px 0 36px; }
+  .project-chapter-top { font-size:.52rem; gap:17px; }
+  .project-chapter-body { grid-template-columns:1fr; gap:24px; padding-top:26px; }
+  .project-scene-wrap { grid-row:1; }
+  .project-scene { aspect-ratio:1.45; max-height:265px; }
+  .project-copy h3 { font-size:3rem; margin-bottom:15px; }
+  .project-context { font-size:.9rem; }
+  .project-note { font-size:.79rem; }
+  .project-technologies { font-size:.55rem; margin-block:15px 20px; }
+  .project-scene-caption { font-size:.46rem; }
+  .project-actions a,.project-live { font-size:.6rem; }
+}

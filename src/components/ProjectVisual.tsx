@@ -88,14 +88,15 @@ const visuals: Record<string, ReactNode> = {
   ),
 }
 
-export function ProjectVisual({ id, number }: { id: string; number: string }) {
+export function ProjectVisual({ id, number, compact = false }: { id: string; number: string; compact?: boolean }) {
+  if (compact) return <svg className="gallery-diagram" viewBox="0 0 520 260" aria-hidden="true">{visuals[id]}</svg>
   return (
     <figure className="project-visual">
       <div className="figure-plate">
         <span className="figure-number mono">FIG. {number}</span>
         <svg viewBox="0 0 520 260" aria-hidden="true">{visuals[id]}</svg>
       </div>
-      <figcaption className="mono">{titles[id]} <span>Concept illustration</span></figcaption>
+      <figcaption className="mono">{titles[id]} </figcaption>
     </figure>
   )
 }

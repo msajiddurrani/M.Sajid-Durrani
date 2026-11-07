@@ -8,7 +8,8 @@ export const identity = {
 }
 
 export const contact = [
-  { label: 'Portfolio', url: 'https://msajid.vercel.app' },
+  { label: 'Mail', url: 'mailto:sajiddurrani987@gmail.com' },
+  { label: 'WhatsApp', url: 'https://wa.me/923199644343' },
   { label: 'GitHub', url: 'https://github.com/msajiddurrani' },
   { label: 'LinkedIn', url: 'https://linkedin.com/in/sajiddurrani' },
 ]

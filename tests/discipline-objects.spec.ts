@@ -1,0 +1,31 @@
+import { expect, test } from '@playwright/test'
+
+test('discipline objects have 3D geometry, animate on entry and pause offscreen',async({page})=>{
+  await page.goto('/')
+  const objects=page.locator('.discipline-object')
+  await expect(objects).toHaveCount(3)
+  await expect(page.locator('.service-block .solid-face')).toHaveCount(18)
+  await expect(page.locator('.intelligence-chip .solid-face')).toHaveCount(6)
+  await page.locator('.discipline-grid').evaluate(e=>e.scrollIntoView({block:'center'}))
+  for(const object of await objects.all())await expect(object).toHaveAttribute('data-live','true')
+  const orbit=page.locator('.orbit-one')
+  const before=await orbit.evaluate(e=>getComputedStyle(e).transform)
+  await expect.poll(()=>orbit.evaluate(e=>getComputedStyle(e).transform)).not.toBe(before)
+  const planes=await page.locator('.interface-plane').evaluateAll(elements=>elements.map(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).m43))
+  expect(new Set(planes).size).toBe(3)
+  await page.evaluate(()=>scrollTo(0,0))
+  for(const object of await objects.all())await expect(object).toHaveAttribute('data-live','false')
+  await page.locator('.discipline-object').evaluateAll(elements=>Promise.all(elements.flatMap(e=>e.getAnimations({subtree:true})).map(animation=>animation.ready)))
+  const paused=await orbit.evaluate(e=>getComputedStyle(e).transform)
+  await page.waitForTimeout(200)
+  expect(await orbit.evaluate(e=>getComputedStyle(e).transform)).toBe(paused)
+})
+
+test('reduced motion retains dimensional objects without animation or WebGL',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'})
+  await page.goto('/')
+  await page.locator('.discipline-grid').scrollIntoViewIfNeeded()
+  await expect(page.locator('.discipline-object canvas')).toHaveCount(0)
+  expect(await page.locator('.discipline-object').evaluateAll(elements=>elements.flatMap(e=>e.getAnimations({subtree:true})).length)).toBe(0)
+  for(const object of await page.locator('.discipline-object').all())await expect(object).toBeVisible()
+})

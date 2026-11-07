@@ -1,5 +1,7 @@
 # Tool and GitHub audit
 
+> Historical audit from the initial 6 November build. The user later selected a different existing public repository and explicitly authorized a push. See [the current GitHub handoff](GITHUB_RELEASE.md); the ledger below records the original session.
+
 | Field | Observed result |
 | --- | --- |
 | Execution date | 2026-11-06, Asia/Karachi (UTC+05:00) |

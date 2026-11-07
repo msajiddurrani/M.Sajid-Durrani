@@ -13,21 +13,29 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "playwright test",
-    "assets:portraits": "node scripts/prepare-portraits.mjs"
+    "assets:portraits": "node scripts/prepare-portraits.mjs",
+    "assets:favicon": "node scripts/prepare-favicon.mjs"
   },
   "dependencies": {
     "@fontsource/archivo-black": "^5.2.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.2.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "gsap": "3.15.1",
+    "matter-js": "0.20.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@eslint/js": "10.0.1",
     "@playwright/test": "^1.56.1",
+    "@types/matter-js": "0.20.2",
     "@types/node": "^24.0.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^5.1.0",
     "eslint": "10.14.0",
     "eslint-plugin-react-hooks": "7.1.1",
